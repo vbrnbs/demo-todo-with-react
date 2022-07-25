@@ -1,5 +1,7 @@
 import { useState } from "react";
 import api from "../../api/api";
+import Header from "../../components/Header";
+import ProfileData from "../../components/ProfileData";
 import { FetchState, useGetTodos } from "../../hooks";
 import { Server } from "../../utils/config";
 import Alert from "../Alert/Alert";
@@ -22,7 +24,8 @@ const Todo = ({ user, dispatch }) => {
       await api.createDocument(
         Server.collectionID,
         data,
-        [`user:${user["$id"]}`],
+        [//
+        'user:62d952119c94ea92a8f7'],
         [`user:${user["$id"]}`]
       );
       setStale({ stale: true });
@@ -45,7 +48,39 @@ const Todo = ({ user, dispatch }) => {
 
   return (
     <>
-      <section className="container h-screen max-h-screen px-3 max-w-xl mx-auto flex flex-col">
+    <Header />
+      <section className="container h-screen max-h-screen px-3 max-w-6xl mx-auto flex flex-col">
+          {isError && <Alert color="red" message="Something went wrong..." />}
+          
+          <div className="my-auto lg:p-16 rounded-lg">
+            <div className="font-bold text-3xl md:text-5xl lg:text-6xl text-center mt-12 mb-7 md:mt-52 md:mb-32">
+              Szia {user.name}
+            </div>
+            <ProfileData />
+
+
+
+
+            <form onSubmit={handleAddTodo}>
+              <input
+                type="text"
+                className="w-full my-8 px-6 py-4 text-xl rounded-lg border-0 focus:ring-2 focus:ring-gray-800 transition duration-200 ease-in-out transform hover:-translate-y-1 hover:scale-110 hover:shadow-xl shadow-md"
+                placeholder="🤔   What to do today?"
+                value={currentTodo}
+                onChange={(e) => setCurrentTodo(e.target.value)}
+              ></input>
+            </form>
+
+            {isLoading && <h1> Betöltés .... </h1>}
+
+            <ul>
+              {todos.map((item) => (
+                <TodoItem key={item["$id"]} item={item} setStale={setStale} />
+              ))}
+            </ul>
+          </div>
+        </section>
+      {/* <section className="container h-screen max-h-screen px-3 max-w-xl mx-auto flex flex-col">
         {isError && <Alert color="red" message="Something went wrong..." />}
         <div className="my-auto p-16 rounded-lg text-center">
           <div className="font-bold text-3xl md:text-5xl lg:text-6xl">
@@ -66,11 +101,12 @@ const Todo = ({ user, dispatch }) => {
 
           <ul>
             {todos.map((item) => (
+              // item["$id"] === item["$id"] &&
               <TodoItem key={item["$id"]} item={item} setStale={setStale} />
             ))}
           </ul>
         </div>
-      </section>
+      </section>*/}
 
       <section className="absolute bottom-0 right-0 py-3 px-6 mr-8 mb-8">
         <button onClick={handleLogout} className="mx-auto mt-4 py-3 px-12 font-semibold text-md rounded-lg shadow-md bg-white text-gray-900 border border-gray-900 hover:border-transparent hover:text-white hover:bg-gray-900 focus:outline-none">

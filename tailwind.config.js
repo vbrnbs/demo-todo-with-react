@@ -11,6 +11,12 @@ module.exports = {
     extend: {},
     fontFamily: {
       sans: ['Avenir', 'Helvetica', 'Arial', 'sans-serif']
+    },
+    colors: {
+      'veg': {
+        'dark': '#aac100',
+        'light':'#d4df59'
+      }
     }
   },
   variants: {

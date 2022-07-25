@@ -1,4 +1,4 @@
-import { appwrite, github, twitter, react } from "../icons";
+import { appwrite, windows, twitter, react } from "../icons";
 import { useHistory } from "react-router-dom";
 
 const Landing = () => {
@@ -11,7 +11,7 @@ const Landing = () => {
   const links = [
     {
       href: "http://github.com/appwrite/appwrite",
-      icon: github(10),
+      icon: windows(10),
     },
     {
       href: "https://twitter.com/appwrite_io",

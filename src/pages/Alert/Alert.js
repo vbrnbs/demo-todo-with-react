@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const Alert = ({ color, message }) => {
   const [showAlert, setShowAlert] = React.useState(true);
-  const TIMEOUT = 3000;
+  const TIMEOUT = 30000;
 
   useEffect(() => {
     let timeout = setTimeout(() => setShowAlert(false), TIMEOUT);
